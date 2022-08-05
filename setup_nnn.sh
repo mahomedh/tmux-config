@@ -5,14 +5,14 @@ release_ver="$(lsb_release -rs)"
 
 # add the relevant repo
 if [[ $(echo "$release_ver >= 22.04" | bc) == 1 ]]; then
-    echo 'deb http://download.opensuse.org/repositories/home:/stig124:/nnn/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/home:stig124:nnn.list
-    curl -fsSL https://download.opensuse.org/repositories/home:stig124:nnn/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_stig124_nnn.gpg >/dev/null
+    echo 'deb http://download.opensuse.org/repositories/home:/stig124:/nnn/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/nnn.list
+    curl -fsSL https://download.opensuse.org/repositories/nnn/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_stig124_nnn.gpg >/dev/null
 elif [[ $(echo "$release_ver >= 20.04 && $release_ver < 22.04" | bc) == 1 ]]; then
-    echo 'deb http://download.opensuse.org/repositories/home:/stig124:/nnn/xUbuntu_20.04/ /' | sudo tee /etc/apt/sources.list.d/home:stig124:nnn.list
-    curl -fsSL https://download.opensuse.org/repositories/home:stig124:nnn/xUbuntu_20.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_stig124_nnn.gpg >/dev/null
+    echo 'deb http://download.opensuse.org/repositories/home:/stig124:/nnn/xUbuntu_20.04/ /' | sudo tee /etc/apt/sources.list.d/nnn.list
+    curl -fsSL https://download.opensuse.org/repositories/nnn/xUbuntu_20.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_stig124_nnn.gpg >/dev/null
 elif [[ $(echo "$release_ver >= 18.04 && $release_ver < 20.04" | bc) == 1 ]]; then
-    echo 'deb http://download.opensuse.org/repositories/home:/stig124:/nnn/xUbuntu_18.04/ /' | sudo tee /etc/apt/sources.list.d/home:stig124:nnn.list
-    curl -fsSL https://download.opensuse.org/repositories/home:stig124:nnn/xUbuntu_18.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_stig124_nnn.gpg >/dev/null
+    echo 'deb http://download.opensuse.org/repositories/home:/stig124:/nnn/xUbuntu_18.04/ /' | sudo tee /etc/apt/sources.list.d/nnn.list
+    curl -fsSL https://download.opensuse.org/repositories/nnn/xUbuntu_18.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_stig124_nnn.gpg >/dev/null
 else
     echo "The output of 'lsb_release -r' is not recognised. Please check."
     exit 2
