@@ -35,9 +35,19 @@ fi
     printf "\n"
     printf "export EDITOR='%s'\n" "$nano_loc"
     printf "export NNN_OPENER='%s'\n" "$nano_loc"
-    printf "export NNN_PLUG='l:!less \$nnn*'\n"
+    printf "export NNN_PLUG='l:!less \$nnn*;m:chmod_nnn;o:chown_nnn'\n"
 
 } >>~/.bashrc
+
+if [ -d "~.config/nnn/plugins" ]; then
+    wget "https://raw.githubusercontent.com/mahomedh/tmux_config/master/chmod_nnn.sh" -O "~.config/nnn/plugins/chmod_nnn.sh"
+    chmod +x "~.config/nnn/plugins/chmod_nnn.sh"
+    wget "https://raw.githubusercontent.com/mahomedh/tmux_config/master/chown_nnn.sh" -O "~.config/nnn/plugins/chown_nnn.sh"
+    chown +x "~.config/nnn/plugins/chmod_nnn.sh"
+else
+   echo "ERROR: Plugins directory doesn't exist yet. Run nnn first then wget the plugins manually"
+fi
+
 
 # Add the script to enable 'cd on quit'
 cat >>~/.bashrc <<-"NSCRIPT"
@@ -54,7 +64,7 @@ n() {
 
     # The backslash allows one to alias n to nnn if desired without making an
     # infinitely recursive alias
-    \nnn -dHUcn "$@"
+    \nnn -dHUcnx "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
             . "$NNN_TMPFILE"
